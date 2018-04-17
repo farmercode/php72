@@ -5,4 +5,9 @@
 
     docker build -t="leonwong/php72" .
 
+# 注意
+如果在使用过程中遇到目录挂载，无法写入的问题，可以将www-data用户和组的id修改为1002,这是本镜像默认设置的。
+
+    usermod -u 1002 www-data
+    groupmod -g 1002 www-data
 

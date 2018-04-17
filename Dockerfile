@@ -36,3 +36,7 @@ RUN mkdir /tmp/build \
     ) \
     && docker-php-ext-enable memcached redis \
     && rm -rf /tmp/build
+RUN usermod -u 1002 www-data \
+    && groupmod -g 1002 www-data \
+    && chown -R www-data:www-data /var/www/html
+USER www-data
