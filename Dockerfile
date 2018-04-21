@@ -1,6 +1,10 @@
 FROM php:7.2.4-fpm
 
 COPY sources.list /etc/apt/sources.list
+RUN docker-php-source extract \
+	&& cp /usr/src/php/php.ini-development /usr/local/etc/php/php.ini \
+	&& sed -i 's#zlib.output_compression = Off#zlib.output_compression = On#' /usr/local/etc/php/php.ini \
+	&& docker-php-source delete
 RUN apt-get update && apt-get install -y \
 		libfreetype6-dev \
 		libjpeg62-turbo-dev \
